@@ -1,5 +1,5 @@
 | Name    | Path  | HTTP Verb | Purpose  | Mongoose Method |
-|---------|---|---|---|
+|---------|---|---|---|---|
 | Index   | /posts | GET | List of all posts | Post.find() |
 | New     | /posts/new | GET | Show new post form | N/A |
 | Create  | /new | POST | Create a new post; then redirect | Post.create() |
