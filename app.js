@@ -45,7 +45,7 @@ app.get("/posts", function(req, res){
 });
 
 // New - Show new post form
-router.get("/posts/new", function(req, res){
+app.get("/posts/new", function(req, res){
   res.render("new");
 });
 
