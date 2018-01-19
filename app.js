@@ -1,9 +1,10 @@
-var bodyParser     = require("body-parser"),
-    methodOverride = require("method-override"),
-    mongoose       = require("mongoose"),
-    express        = require("express"),
-    Post           = require("./models/post"),
-    app = express();
+var bodyParser       = require("body-parser"),
+    expressSanitizer = require("express-sanitizer"),
+    methodOverride   = require("method-override"),
+    mongoose         = require("mongoose"),
+    express          = require("express"),
+    Post             = require("./models/post"),
+    app              = express();
 
 mongoose.connect("mongodb://localhost/personal-blog", {useMongoClient: true});
 app.set("view engine", "ejs");
@@ -47,6 +48,11 @@ app.get("/posts", function(req, res){
 // New - Show new post form
 app.get("/posts/new", function(req, res){
   res.render("new");
+});
+
+// Create - add new post
+app.post("/posts", function(req, res){
+
 });
 
 
