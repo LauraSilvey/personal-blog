@@ -10,6 +10,7 @@ mongoose.connect("mongodb://localhost/personal-blog", {useMongoClient: true});
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(expressSanitizer());
 app.use(methodOverride("_method"));
 
 // var data = [
@@ -52,6 +53,25 @@ app.get("/posts/new", function(req, res){
 
 // Create - add new post
 app.post("/posts", function(req, res){
+  req.body.entry = req.sanitize(req.body.entry);
+  var title = req.body.title;
+  var entry = req.body.entry;
+  var author = req.body.name;
+
+  var newPost = {
+    title: title,
+    entry: entry,
+    author: author,
+  };
+ 
+    console.log(newPost);
+  Post.create(newPost, function(err, newEntry){
+    if(err){
+      console.log(err);
+    }else{
+      res.redirect("/posts");
+    }
+  });
 
 });
 
