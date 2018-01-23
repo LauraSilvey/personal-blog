@@ -75,6 +75,17 @@ app.post("/posts", function(req, res){
 
 });
 
+// Show - show details for one particular post
+app.get("/posts/:id", function(req, res){
+  Post.findById(req.params.id, function(err, foundPost){
+    if(err || !foundPost){
+      res.redirect("back");
+    }else{
+      console.log("foundPost");
+      res.render("show",  {post: foundPost});
+    }
+  });
+});
 
 
 app.listen(3000);
