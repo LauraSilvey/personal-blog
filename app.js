@@ -87,5 +87,12 @@ app.get("/posts/:id", function(req, res){
   });
 });
 
+// Edit - show edit form for one particular post
+app.get("/posts/:id/edit", function(req, res){
+  Post.findById(req.params.id, function(err, foundPost){
+    res.render("edit", {post: foundPost});
+  });
+});
+
 
 app.listen(3000);
