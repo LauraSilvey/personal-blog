@@ -4,7 +4,12 @@
 <p><%= post.entry %></p>
 <p><%= post.name %></p>
 
+<a class="btn btn-xs btn-warning" href="/posts/<%= post._id %>/edit">Edit</a>
+<form class="delete-form" action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+  <button class="btn btn-xs btn-danger">Delete</button>
+</form>
 
-<a href="/posts">Back</a>
+
+<a class="btn btn-xs btn-primary" href="/posts">Back</a>
 
 <% include ./partials/footer %>

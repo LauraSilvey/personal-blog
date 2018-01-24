@@ -105,4 +105,15 @@ app.put("/posts/:id", function(req, res){
   });
 });
 
+// Destroy - delete selected post, then redirect
+app.delete("/posts/:id", function(req, res){
+  Post.findByIdAndRemove(req.params.id, function(err){
+    if(err){
+      res.redirect("/posts");
+    }else{
+      res.redirect("/posts");
+    }
+  });
+});
+
 app.listen(3000);
