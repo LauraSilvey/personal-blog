@@ -81,7 +81,6 @@ app.get("/posts/:id", function(req, res){
     if(err || !foundPost){
       res.redirect("back");
     }else{
-      console.log("foundPost");
       res.render("show",  {post: foundPost});
     }
   });
@@ -89,10 +88,21 @@ app.get("/posts/:id", function(req, res){
 
 // Edit - show edit form for one particular post
 app.get("/posts/:id/edit", function(req, res){
-  Post.findById(req.params.id, function(err, foundPost){
+  Post.findById(req.params.id, req.body.entry, function(err, foundPost){
     res.render("edit", {post: foundPost});
   });
 });
 
+// Update - update selected post, then redirect
+app.put("/posts/:id", function(req, res){
+  req.body.post.entry = req.sanitize(req.body.post.entry);
+  Post.findByIdAndUpdate(req.params.id, req.body.post, function(err, updatedPost){
+    if(err){
+      res.redirect("/posts");
+    }else{
+      res.redirect("/posts/" + req.params.id);
+    }
+  });
+});
 
 app.listen(3000);
