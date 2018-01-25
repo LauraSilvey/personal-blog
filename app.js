@@ -32,7 +32,7 @@ app.use(methodOverride("_method"));
 // ];
 
 app.get("/", function(req, res){
-  res.render("index");
+  res.redirect("posts");
 });
 
 // Index - show all posts
