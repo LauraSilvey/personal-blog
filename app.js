@@ -53,15 +53,15 @@ app.get("/posts/new", function(req, res){
 
 // Create - add new post
 app.post("/posts", function(req, res){
-  req.body.entry = req.sanitize(req.body.entry);
+  //req.body.entry = req.sanitize(req.body.entry);
   var title = req.body.title;
   var entry = req.body.entry;
-  var author = req.body.name;
+  var author = req.body.author;
 
   var newPost = {
+    author: author,
     title: title,
     entry: entry,
-    author: author,
   };
  
     console.log(newPost);
