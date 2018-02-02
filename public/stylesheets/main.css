@@ -1,12 +1,70 @@
-h1 {
+body {
+  background: #f7f7f7;
+  "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+}
+
+/*
+*
+* posts
+*
+*/
+
+.main-posts {
+  padding: 20px 7px 10px;
+}
+
+.post {
+  background-color: white;
+  padding:  55px 0 41px;
+  margin-bottom: 20px;
+}
+
+.post-head {
   text-align: center;
 }
 
-
-div.container.form-fields {
-  /*padding-top: 15px;*/
-/*  border: 3px solid #f7f7f9;
-  border-radius: 5px;*/
- 
-
+.post-date {
+  color: rgb(123, 123, 123);
+  font-size: 13px;
+  margin-bottom: 13px;
 }
+
+.post-title {
+  color: #222222;
+  /*font-weight: bold;*/
+  /*font-family: sans serif;*/
+}
+
+.post .entry {
+  margin-bottom: 37px;
+  padding: 0 60px;
+}
+
+.post .entry p {
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: #7b7b7b;
+}
+
+/*
+*
+* posts/new 
+*
+*/
+
+.main-new {
+  padding: 10px 7px 10px;
+  color: #222222;
+}
+
+.form {
+  background-color: white;
+  padding:  20px 10px 10px;
+  margin-bottom: 20px;
+}
+
+/*.form-group {
+  padding: 0 60px;
+}*/
+
+

@@ -2,7 +2,7 @@
 
 <h1><%= post.title%></h1>
 <p><%- post.entry %></p>
-<p><%= post.author %></p>
+<p><%= post.created.toDateString() %></p>
 
 <a class="btn btn-xs btn-warning" href="/posts/<%= post._id %>/edit">Edit</a>
 <form class="delete-form" action="/posts/<%= post._id %>?_method=DELETE" method="POST">

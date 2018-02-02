@@ -1,18 +1,27 @@
 <% include ./partials/header %>
 
-
-
-<div class="container-fluid">
-  <article class="container">
-    <% posts.forEach(function(post){%>
-      <h1><%= post.title %></h1>
-      <div class="entry">
-        <p><%- post.entry %></p>
+<div class="main-posts">
+  <% posts.forEach(function(post){%>
+    <article class="post">
+      <header class="post-head">
+        <time 
+          class="text-uppercase post-date" 
+          datetime="<%= post.created %>"><%= post.created.toDateString() %></time>
+        <h3 class="post-title"><%= post.title %></h3>
+      </header>
+      <div class="post-body">
+        <div class="entry">
+          <p><%- post.entry %></p>
+        </div>
+        <div class="post-actions text-center">
+          <a href="/posts/<%= post._id %>" class="btn btn-outline-info btn-sm" role="button">Read More</a>
+        </div>
       </div>
-      <p><%= post.author %></p>
-      <a href="/posts/<%= post._id %>" class="btn btn-info btn-sm" role="button">Read More</a>
-    <%});%>
-    <a href="/posts/new" class="btn btn-primary btn-lg" role="button">New Post</a>
-  </article>
-</div>
+    </article>
+  <%});%>
+
+  <a href="/posts/new" class="btn btn-primary btn-lg" role="button">New Post</a>
+    
+</div>    
+
 <% include ./partials/footer %>

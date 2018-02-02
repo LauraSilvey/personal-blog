@@ -1,8 +1,8 @@
 <% include ./partials/header %>
 
-<h1>New Post</h1>
-<form class="container" action="/posts" method="POST">
-  <div class="container form-fields">
+<div class="container main-new">
+  <h3 class="view-header text-center">New Post</h3>
+  <form class="form" action="/posts" method="POST">
     <div class="form-group">
       <input 
         type="text" 
@@ -18,16 +18,15 @@
         name="entry" 
         placeholder="New post"></textarea>
     </div>
-    <div class="form-group">
-      <input 
-        type="text" 
-        class="form-control" 
-        name="author" 
-        placeholder="Author">
-    </div>
     <div class="form-group"> 
       <button class="btn btn-primary btn-lrg btn-block">Publish</button>
     </div>
+  </form>
+</div>
+
+
+  <div class="container form-fields">
+    
   </div>
 </form>
 
