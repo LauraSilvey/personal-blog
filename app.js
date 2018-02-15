@@ -9,6 +9,7 @@ var bodyParser       = require("body-parser"),
     session          = require("express-session"),
     MongoDBStore     = require("connect-mongodb-session")(session),
     Post             = require("./models/post"),
+    User             = require("./models/user"),
     app              = express();
 
 mongoose.connect("mongodb://localhost/personal-blog", {useMongoClient: true});
