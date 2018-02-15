@@ -3,6 +3,7 @@ var bodyParser       = require("body-parser"),
     methodOverride   = require("method-override"),
     mongoose         = require("mongoose"),
     express          = require("express"),
+    dotenv           = require('dotenv').config(),
     Post             = require("./models/post"),
     app              = express();
 
