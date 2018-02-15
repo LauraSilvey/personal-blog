@@ -13,10 +13,11 @@ var bodyParser       = require("body-parser"),
     app              = express();
 
 mongoose.connect("mongodb://localhost/personal-blog", {useMongoClient: true});
-app.set("view engine", "ejs");
-app.use(express.static("public"));
+mongoose.Promise = global.Promise;
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(expressSanitizer());
+app.set("view engine", "ejs");
+app.use(express.static("public"));
 app.use(methodOverride("_method"));
 
 // var data = [
@@ -36,6 +37,36 @@ app.use(methodOverride("_method"));
 //     entry: "I have stuff to post, too!!!!!!!!"
 //   },
 // ];
+
+//Passport Config
+var store = new MongoDBStore(
+  {
+    uri: process.env.DATABASEURL,
+    collection: process.env.COLLECTION_NAME  
+  });
+
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  cookie: {
+        maxAge: 86400000 // 24 hours
+      },
+  store: store,
+  resave: true,
+  saveUninitialized: true,
+}));
+console.log("uri", store);
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.use(function(req, res, next){
+  res.locals.currentUser = req.user;
+  // res.locals.error = req.flash("error");
+  // res.locals.success = req.flash("success");
+  next();
+});
 
 app.get("/", function(req, res){
   res.redirect("posts");
