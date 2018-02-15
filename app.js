@@ -4,6 +4,10 @@ var bodyParser       = require("body-parser"),
     mongoose         = require("mongoose"),
     express          = require("express"),
     dotenv           = require('dotenv').config(),
+    LocalStrategy    = require("passport-local"),
+    passport         = require("passport"),
+    session          = require("express-session"),
+    MongoDBStore     = require("connect-mongodb-session")(session),
     Post             = require("./models/post"),
     app              = express();
 
