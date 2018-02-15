@@ -1,9 +1,9 @@
 <% include ./partials/header %>
 
-<div class="main-posts">
-  <% posts.forEach(function(post){%>
-    <article class="post">
-      <header class="post-head">
+<div class=" container main-posts">
+  <% posts.reverse().forEach(function(post){%>
+    <article class=" container post">
+      <header class="post-head text-center">
         <time 
           class="text-uppercase post-date" 
           datetime="<%= post.created %>"><%= post.created.toDateString() %></time>
@@ -19,7 +19,6 @@
       </div>
     </article>
   <%});%>
-
   <a href="/posts/new" class="btn btn-primary btn-lg" role="button">New Post</a>
     
 </div>    

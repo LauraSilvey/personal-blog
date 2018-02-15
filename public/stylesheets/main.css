@@ -1,6 +1,5 @@
 body {
   background: #f7f7f7;
-  "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
 }
 
 /*
@@ -10,12 +9,12 @@ body {
 */
 
 .main-posts {
-  padding: 20px 7px 10px;
+  padding: 20px 20px 10px;
 }
 
 .post {
   background-color: white;
-  padding:  55px 0 41px;
+  padding:  15px;
   margin-bottom: 20px;
 }
 
@@ -31,13 +30,16 @@ body {
 
 .post-title {
   color: #222222;
-  /*font-weight: bold;*/
-  /*font-family: sans serif;*/
+  font-size: 18px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+  margin-bottom: 30px;
+  margin-top: 4px;
 }
 
 .post .entry {
   margin-bottom: 37px;
-  padding: 0 60px;
+  padding: 0 20px;
 }
 
 .post .entry p {
@@ -53,18 +55,45 @@ body {
 */
 
 .main-new {
-  padding: 10px 7px 10px;
-  color: #222222;
+  padding: 10px 17px 10px;
 }
 
 .form {
   background-color: white;
+  border-radius: 20px;
   padding:  20px 10px 10px;
   margin-bottom: 20px;
 }
 
-/*.form-group {
-  padding: 0 60px;
-}*/
+/*
+*
+* posts/show 
+*
+*/
 
+.main-post {
+  padding: 20px 20px 10px;
+}
 
+.show-entry:after {
+  content: "";
+  display: block;
+  width: 100%;
+  min-width: 30px;
+  border-bottom: 1px solid rgba(0,0,0,.2);
+  margin-bottom: 1em;
+}
+
+.show-btns {
+  padding: 20px;
+}
+
+/*
+*
+* posts/edit 
+*
+*/
+
+.main-edit {
+  padding: 10px 17px 10px;
+}

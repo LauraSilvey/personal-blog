@@ -1,15 +1,33 @@
 <% include ./partials/header %>
 
-<h1><%= post.title%></h1>
-<p><%- post.entry %></p>
-<p><%= post.created.toDateString() %></p>
+<div class="container main-post">
+  <article class=" container post">
+      <header class="post-head text-center">
+        <time 
+          class="text-uppercase post-date" 
+          datetime="<%= post.created %>"><%= post.created.toDateString() %></time>
+        <h3 class="post-title"><%= post.title %></h3>
+      </header>
+      <div class="post-body show-body">
+        <div class="entry show-entry">
+          <p><%- post.entry %></p>
+        </div>
+        <div class="d-flex justify-content-between align-items-end show-btns" aria-label="buttons">
+            <div>
+              <a class="btn btn-sm btn-outline-dark" href="/posts">Back</a>
+            </div>
+            <div class="d-flex" aria-label="Edit and delete buttons">
+              <a class="btn btn-sm btn-outline-warning mr-2" href="/posts/<%= post._id %>/edit">Edit</a>
+              <form class="delete-form" action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+                <button class="btn btn-sm btn-outline-danger">Delete</button>
+              </form>
+            </div>
+          </div>
+      </div>
 
-<a class="btn btn-xs btn-warning" href="/posts/<%= post._id %>/edit">Edit</a>
-<form class="delete-form" action="/posts/<%= post._id %>?_method=DELETE" method="POST">
-  <button class="btn btn-xs btn-danger">Delete</button>
-</form>
+      
+    </article>
+</div>
 
-
-<a class="btn btn-xs btn-primary" href="/posts">Back</a>
 
 <% include ./partials/footer %>
