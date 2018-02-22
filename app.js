@@ -22,21 +22,21 @@ app.use(methodOverride("_method"));
 
 // var data = [
 //   {
-//     name: "Laura",
-//     title: "First Post",
-//     entry: "This is my first post!!!!",
+//     username: "Laura S.",
+//     password: process.env.L_USER_PASSWORD,
 //   },
 //   {
-//     name: "Laura",
-//     title: "Second Post",
-//     entry: "More stuff to post! Yaya!"
-//   },
-//   {
-//     name: "Chris",
-//     title: "New Poster",
-//     entry: "I have stuff to post, too!!!!!!!!"
+//     username: "Chris S.",
+//     password: process.env.C_USER_PASSWORD,
 //   },
 // ];
+
+Campground.create(data, function(err, user){
+  if (err) {
+    console.log(err);
+  } else {
+    console.log("added campground");
+}
 
 //Passport Config
 var store = new MongoDBStore(
