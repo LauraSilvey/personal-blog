@@ -6,6 +6,7 @@ var bodyParser       = require("body-parser"),
     dotenv           = require('dotenv').config(),
     LocalStrategy    = require("passport-local"),
     passport         = require("passport"),
+    passportLocalMongoose = require("passport-local-mongoose"),
     session          = require("express-session"),
     MongoDBStore     = require("connect-mongodb-session")(session),
     Post             = require("./models/post"),
@@ -20,23 +21,6 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
 
-// var data = [
-//   {
-//     username: "Laura S.",
-//     password: process.env.L_USER_PASSWORD,
-//   },
-//   {
-//     username: "Chris S.",
-//     password: process.env.C_USER_PASSWORD,
-//   },
-// ];
-
-Campground.create(data, function(err, user){
-  if (err) {
-    console.log(err);
-  } else {
-    console.log("added campground");
-}
 
 //Passport Config
 var store = new MongoDBStore(
@@ -47,26 +31,36 @@ var store = new MongoDBStore(
 
 app.use(session({
   secret: process.env.SESSION_SECRET,
-  cookie: {
-        maxAge: 86400000 // 24 hours
-      },
-  store: store,
-  resave: true,
-  saveUninitialized: true,
+  // cookie: {
+  //       maxAge: 86400000 // 24 hours
+  //     },
+  // store: store,
+  resave: false,
+  saveUninitialized: false,
 }));
-console.log("uri", store);
+
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-
 app.use(function(req, res, next){
   res.locals.currentUser = req.user;
+  
   // res.locals.error = req.flash("error");
   // res.locals.success = req.flash("success");
   next();
 });
+
+// User.register(new User({username: "Christopher"}), process.env.C_USER_PASSWORD, function(err, user){
+//   if(err){
+//     console.log(err);
+//   }else{
+//     passport.authenticate("local")(function(){
+//       console.log("added user");
+//     }); 
+//   }
+// });
 
 app.get("/", function(req, res){
   res.redirect("posts");
@@ -151,6 +145,27 @@ app.delete("/posts/:id", function(req, res){
       res.redirect("/posts");
     }
   });
+});
+
+
+//Show login form
+app.get("/login", function(req, res){ 
+  res.render("login");
+});
+
+//handle login logic
+app.post("/login", passport.authenticate("local", 
+  {
+    successRedirect: "/posts",
+    failureRedirect: "/login", 
+  }), function(req,res){
+});
+
+//Show logout form
+app.get("/logout", function(req, res){
+  req.logout();
+  //req.flash("success", "Logged you out!");
+  res.redirect("/posts");
 });
 
 app.listen(3000);
