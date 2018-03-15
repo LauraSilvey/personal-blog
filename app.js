@@ -78,12 +78,12 @@ app.get("/posts", function(req, res){
 });
 
 // New - Show new post form
-app.get("/posts/new", function(req, res){
+app.get("/posts/new", isLoggedIn, function(req, res){
   res.render("new");
 });
 
 // Create - add new post
-app.post("/posts", function(req, res){
+app.post("/posts", isLoggedIn, function(req, res){
   //req.body.entry = req.sanitize(req.body.entry);
   var title = req.body.title;
   var entry = req.body.entry;
@@ -167,5 +167,13 @@ app.get("/logout", function(req, res){
   //req.flash("success", "Logged you out!");
   res.redirect("/posts");
 });
+
+//middleware
+function isLoggedIn(req, res, next){
+  if(req.isAuthenticated()){
+    return next();
+  }
+  res.redirect("/login");
+}
 
 app.listen(3000);

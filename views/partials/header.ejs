@@ -21,8 +21,12 @@
             <div class="navbar-nav ml-md-auto">
               <a class="nav-item nav-link" href="#">About</a>
               <a class="nav-item nav-link" href="#">Contact</a>
-              <a class="nav-item nav-link" href="/login">Sign in</a>
-              <a class="nav-item nav-link" href="/logout">Sign out</a>
+              <% if(!currentUser){ %>
+                  <a class="nav-item nav-link" href="/login">Sign in</a>
+              <% } else { %>
+                  <a class="nav-item nav-link" href="#">Welcome, <%= currentUser.username %>! </a>
+                  <a class="nav-item nav-link" href="/logout">Sign out</a>
+              <% } %> 
             </div>
           </div>
         </div>
