@@ -16,16 +16,16 @@
             <div>
               <a class="btn btn-sm btn-outline-dark" href="/posts">Back</a>
             </div>
-            <div class="d-flex" aria-label="Edit and delete buttons">
-              <a class="btn btn-sm btn-outline-warning mr-2" href="/posts/<%= post._id %>/edit">Edit</a>
-              <form class="delete-form" action="/posts/<%= post._id %>?_method=DELETE" method="POST">
-                <button class="btn btn-sm btn-outline-danger">Delete</button>
-              </form>
-            </div>
+            <% if(currentUser){ %>
+                <div class="d-flex" aria-label="Edit and delete buttons">
+                  <a class="btn btn-sm btn-outline-warning mr-2" href="/posts/<%= post._id %>/edit">Edit</a>
+                  <form class="delete-form" action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+                    <button class="btn btn-sm btn-outline-danger">Delete</button>
+                  </form>
+                </div>
+            <% } %>  
           </div>
       </div>
-
-      
     </article>
 </div>
 

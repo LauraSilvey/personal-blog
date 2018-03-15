@@ -19,7 +19,9 @@
       </div>
     </article>
   <%});%>
-  <a href="/posts/new" class="btn btn-primary btn-lg" role="button">New Post</a>
+  <% if(currentUser){ %>
+    <a href="/posts/new" class="btn btn-primary btn-lg" role="button">New Post</a>
+  <% } %>
     
 </div>    
 
