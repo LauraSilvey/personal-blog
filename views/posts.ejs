@@ -4,9 +4,13 @@
   <% posts.reverse().forEach(function(post){%>
     <article class=" container post">
       <header class="post-head text-center">
-        <time 
-          class="text-uppercase post-date" 
-          datetime="<%= post.created %>"><%= post.created.toDateString() %></time>
+        <div class="time-author">
+          <time 
+            class="text-uppercase post-date" 
+            datetime="<%= post.created %>"><%= post.created.toDateString() %>
+          </time>
+          <p class="text-uppercase post-author"><%= %></p>
+        </div>
         <h3 class="post-title"><%= post.title %></h3>
       </header>
       <div class="post-body">
