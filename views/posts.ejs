@@ -7,7 +7,7 @@
         <div class="time-author">
           <time 
             class="text-uppercase post-date" 
-            datetime="<%= post.created %>"><%= post.created.toDateString() %>
+            datetime="<%= post.created %>"><%= post.created.toDateString() %> | by <%= post.author.username %> |
           </time>
           <p class="text-uppercase post-author"><%= %></p>
         </div>
