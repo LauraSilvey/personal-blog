@@ -23,7 +23,10 @@ router.post("/posts", isLoggedIn, function(req, res){
   //req.body.entry = req.sanitize(req.body.entry);
   var title = req.body.title;
   var entry = req.body.entry;
-  var author = req.body.author;
+  var author = {
+    id: req.user._id,
+    username: req.user.username,
+  };
 
   var newPost = {
     author: author,
@@ -62,7 +65,7 @@ router.get("/posts/:id/edit", function(req, res){
 
 // Update - update selected post, then redirect
 router.put("/posts/:id", function(req, res){
-  req.body.post.entry = req.sanitize(req.body.post.entry);
+  //req.body.post.entry = req.sanitize(req.body.post.entry);
   Post.findByIdAndUpdate(req.params.id, req.body.post, function(err, updatedPost){
     if(err){
       res.redirect("/posts");
